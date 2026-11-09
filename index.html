@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone & Digital Life | KING_YOSEF_</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="terminal-prompt">></span> Phone_&_Digital_Life<span class="blinking-cursor">_</span>
+            </div>
+            <div class="developer-tag">
+                <span class="status-dot"></span> DEV: <strong>KING_YOSEF_</strong>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero-section">
+            <h1>📱 Phone & Digital Life <span class="version">(new)</span></h1>
+            <p class="subtitle">A comprehensive suite of utilities to manage, optimize, and secure your digital footprint. Built for performance.</p>
+        </header>
+
+        <section class="grid-container">
+            <!-- Tool 1 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Screen Time / App Usage Planner</h2>
+                    <span class="difficulty medium">Medium</span>
+                </div>
+                <p class="description">Set limits, see weekly budget. Regain control over your attention span and optimize your daily digital consumption.</p>
+                <button class="action-btn" data-target="modal-screentime">Initialize Planner</button>
+            </article>
+
+            <!-- Tool 2 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Photo Storage Estimator</h2>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <p class="description">Photos/videos → GB & cloud cost. Calculate exactly how much storage you need before you hit the limit.</p>
+                <button class="action-btn" data-target="modal-storage">Estimate Storage</button>
+            </article>
+
+            <!-- Tool 3 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Phone Plan Comparator</h2>
+                    <span class="difficulty medium">Medium</span>
+                </div>
+                <p class="description">Data/minutes → best plan math. Input your usage and mathematically find the most cost-effective carrier plan.</p>
+                <button class="action-btn" data-target="modal-plan">Compare Plans</button>
+            </article>
+
+            <!-- Tool 4 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Wi-Fi Speed Test Explainer</h2>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <p class="description">Mbps → what it means for streaming/gaming. Translate confusing numbers into real-world performance metrics.</p>
+                <button class="action-btn" data-target="modal-wifi">Explain Speed</button>
+            </article>
+
+            <!-- Tool 5 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Backup Checklist Generator</h2>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <p class="description">What to back up before switching phones. Generate a detailed, step-by-step data migration protocol.</p>
+                <button class="action-btn" data-target="modal-backup">Generate Checklist</button>
+            </article>
+
+            <!-- Tool 6 -->
+            <article class="tool-card">
+                <div class="card-header">
+                    <h2>Digital Legacy / Emergency Contacts</h2>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <p class="description">Printable info sheet. Securely organize vital access protocols and emergency contact data for the unexpected.</p>
+                <button class="action-btn" data-target="modal-legacy">Create Card</button>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 Phone & Digital Life Organization. All systems operational.</p>
+            <p>Developed by <span class="highlight">KING_YOSEF_</span></p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODALS (Hidden by default)                 -->
+    <!-- ========================================== -->
+    
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+
+            <!-- Modal 1: Screen Time -->
+            <div class="modal-body" id="modal-screentime">
+                <h2>Screen Time Planner</h2>
+                <div class="input-group">
+                    <label>Daily Screen Time Limit (Hours):</label>
+                    <input type="number" id="st-hours" value="3" min="1" max="24">
+                </div>
+                <button class="calc-btn" onclick="calcScreenTime()">Calculate Weekly Budget</button>
+                <div class="result-box" id="st-result"></div>
+            </div>
+
+            <!-- Modal 2: Storage -->
+            <div class="modal-body" id="modal-storage">
+                <h2>Storage Estimator</h2>
+                <div class="input-group">
+                    <label>Number of Photos (avg 3MB):</label>
+                    <input type="number" id="storage-photos" value="1000">
+                </div>
+                <div class="input-group">
+                    <label>Number of Videos (avg 60MB/min):</label>
+                    <input type="number" id="storage-videos" value="50">
+                </div>
+                <button class="calc-btn" onclick="calcStorage()">Estimate GB & Cost</button>
+                <div class="result-box" id="storage-result"></div>
+            </div>
+
+            <!-- Modal 3: Phone Plan -->
+            <div class="modal-body" id="modal-plan">
+                <h2>Plan Comparator</h2>
+                <div class="input-group">
+                    <label>Monthly Data Needed (GB):</label>
+                    <input type="number" id="plan-data" value="15">
+                </div>
+                <div class="input-group">
+                    <label>Monthly Minutes Needed:</label>
+                    <input type="number" id="plan-minutes" value="500">
+                </div>
+                <button class="calc-btn" onclick="calcPlan()">Find Best Plan</button>
+                <div class="result-box" id="plan-result"></div>
+            </div>
+
+            <!-- Modal 4: Wi-Fi Speed -->
+            <div class="modal-body" id="modal-wifi">
+                <h2>Wi-Fi Speed Explainer</h2>
+                <div class="input-group">
+                    <label>Your Download Speed (Mbps):</label>
+                    <input type="number" id="wifi-speed" value="100">
+                </div>
+                <button class="calc-btn" onclick="calcWifi()">Explain Speed</button>
+                <div class="result-box" id="wifi-result"></div>
+            </div>
+
+            <!-- Modal 5: Backup -->
+            <div class="modal-body" id="modal-backup">
+                <h2>Backup Checklist Generator</h2>
+                <div class="input-group">
+                    <label>Old Phone Type:</label>
+                    <select id="backup-os">
+                        <option value="android">Android</option>
+                        <option value="ios">iOS (iPhone)</option>
+                    </select>
+                </div>
+                <button class="calc-btn" onclick="calcBackup()">Generate Checklist</button>
+                <div class="result-box list-box" id="backup-result"></div>
+            </div>
+
+            <!-- Modal 6: Legacy -->
+            <div class="modal-body" id="modal-legacy">
+                <h2>Emergency Info Card</h2>
+                <div class="input-group">
+                    <label>Emergency Contact Name:</label>
+                    <input type="text" id="legacy-name" placeholder="e.g. John Doe">
+                </div>
+                <div class="input-group">
+                    <label>Emergency Contact Number:</label>
+                    <input type="text" id="legacy-number" placeholder="e.g. +1 555 0199">
+                </div>
+                <div class="input-group">
+                    <label>Blood Type / Medical Info:</label>
+                    <input type="text" id="legacy-medical" placeholder="e.g. O+ / Allergic to Penicillin">
+                </div>
+                <button class="calc-btn" onclick="calcLegacy()">Generate Info Sheet</button>
+                <div class="result-box" id="legacy-result"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
